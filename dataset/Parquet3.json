@@ -1,0 +1,24 @@
+{
+	"name": "Parquet3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "projectlinkservice",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "practice_data_sets"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "mupfiledata",
+				"fileSystem": "hospitalprjectrowdata"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

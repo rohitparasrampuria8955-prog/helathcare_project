@@ -1,0 +1,15 @@
+{
+	"name": "rohitbigdata3",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "37a101bf-7fc7-4573-a36f-890b5357341b",
+		"tenantId": "84761dcc-bc4b-44ce-bd58-0d7032cef3fe"
+	}
+}

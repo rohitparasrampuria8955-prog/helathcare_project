@@ -1,0 +1,24 @@
+{
+	"name": "loadjsonindatabricks",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "helthcare_project_link_service",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "landing/patient_fhir_data",
+				"fileSystem": "helthcare-data"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
