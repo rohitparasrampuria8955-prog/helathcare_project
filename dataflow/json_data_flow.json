@@ -21,7 +21,7 @@
 						"referenceName": "loadjsonindatabricks",
 						"type": "DatasetReference"
 					},
-					"name": "sink1"
+					"name": "sink2"
 				}
 			],
 			"transformations": [
@@ -62,17 +62,29 @@
 					"name": "join1"
 				},
 				{
-					"name": "select3"
+					"name": "filter3"
 				},
 				{
-					"name": "derivedColumn6"
+					"name": "select4"
+				},
+				{
+					"name": "derivedColumn7"
+				},
+				{
+					"name": "derivedColumn8"
+				},
+				{
+					"name": "join2"
+				},
+				{
+					"name": "select5"
 				}
 			],
 			"scriptLines": [
 				"source(output(",
-				"          entry as (fullUrl as string, request as (method as string, url as string), resource as (abatementDateTime as string, activity as (detail as (code as (coding as (code as integer, display as string, system as string)[], text as string), location as (display as string), status as string))[], address as (city as string, country as string, extension as (extension as (url as string, valueDecimal as double)[], url as string)[], line as string[], postalCode as short, state as string)[], addresses as (reference as string)[], agent as (onBehalfOf as (display as string, reference as string), type as (coding as (code as string, display as string, system as string)[], text as string), who as (display as string, reference as string))[], author as (display as string, reference as string)[], authoredOn as string, billablePeriod as (end as string, start as string), birthDate as date, careTeam as (provider as (reference as string), reference as string, role as (coding as (code as string, display as string, system as string)[]), sequence as boolean)[], category as string[], claim as (reference as string), class as (code as string, system as string), clinicalStatus as (coding as (code as string, system as string)[]), code as (coding as (code as string, display as string, system as string)[], text as string), communication as (language as (coding as (code as string, display as string, system as string)[], text as string))[], component as (code as (coding as (code as string, display as string, system as string)[], text as string), valueCodeableConcept as (coding as (code as string, display as string, system as string)[], text as string), valueQuantity as (code as string, system as string, unit as string, value as integer), valueString as string)[], contained as (beneficiary as (reference as string), id as string, intent as string, payor as (display as string)[], performer as (reference as string)[], requester as (reference as string), resourceType as string, status as string, subject as (reference as string), type as (text as string))[], content as (attachment as (contentType as string, data as string), format as (code as string, display as string, system as string))[], context as (encounter as (reference as string)[], period as (end as string, start as string)), created as string, criticality as string, custodian as (display as string, reference as string), date as string, deceasedDateTime as string, deviceName as (name as string, type as string)[], diagnosis as (diagnosisReference as (reference as string), sequence as short, type as (coding as (code as string, system as string)[])[])[], distinctIdentifier as long, effectiveDateTime as string, encounter as (reference as string), expirationDate as string, extension as (extension as (url as string, valueCoding as (code as string, display as string, system as string), valueString as string)[], url as string, valueAddress as (city as string, country as string, state as string), valueCode as string, valueDecimal as double, valueString as string)[], facility as (display as string, reference as string), gender as string, id as string, identifier as (system as string, type as (coding as (code as string, display as string, system as string)[], text as string), use as string, value as string)[], insurance as (coverage as (display as string, reference as string), focal as boolean, sequence as boolean)[], insurer as (display as string), intent as string, issued as string, item as (adjudication as (amount as (currency as string, value as double), category as (coding as (code as string, display as string, system as string)[]))[], category as (coding as (code as boolean, display as string, system as string)[]), diagnosisSequence as short[], encounter as (reference as string)[], informationSequence as short[], locationCodeableConcept as (coding as (code as short, display as string, system as string)[]), net as (currency as string, value as double), procedureSequence as short[], productOrService as (coding as (code as long, display as string, system as string)[], text as string), sequence as short, servicedPeriod as (end as string, start as string))[], location as string, lotNumber as long, managingOrganization as (display as string, reference as string)[], manufactureDate as string, maritalStatus as (coding as (code as string, display as string, system as string)[], text as string), medicationCodeableConcept as (coding as (code as integer, display as string, system as string)[], text as string), meta as (profile as string[]), multipleBirthBoolean as boolean, name as (family as string, given as string[], prefix as string[], use as string)[], occurrenceDateTime as string, onsetDateTime as string, outcome as string, participant as (individual as (display as string, reference as string), member as (display as string, reference as string), period as (end as string, start as string), role as (coding as (code as integer, display as string, system as string)[], text as string)[], type as (coding as (code as string, display as string, system as string)[], text as string)[])[], patient as (display as string, reference as string), payment as (amount as (currency as string, value as double)), performedPeriod as (end as string, start as string), performer as (display as string, reference as string)[], period as (end as string, start as string), prescription as (reference as string), presentedForm as (contentType as string, data as string)[], primarySource as boolean, priority as (coding as (code as string, system as string)[]), procedure as (procedureReference as (reference as string), sequence as short)[], provider as (display as string, reference as string), reasonCode as (coding as (code as integer, display as string, system as string)[], text as string)[], reasonReference as (display as string, reference as string)[], recorded as string, recordedDate as string, referral as (reference as string), requester as (display as string, reference as string), resourceType as string, result as (display as string, reference as string)[], serialNumber as long, serviceProvider as (display as string, reference as string), status as string, subject as (display as string, reference as string), supportingInfo as (category as (coding as (code as string, system as string)[]), sequence as short, valueReference as (reference as string))[], target as (reference as string)[], telecom as (system as string, use as string, value as string)[], text as (div as string, status as string), total as string, type as string, udiCarrier as (carrierHRF as string, deviceIdentifier as long)[], use as string, vaccineCode as (coding as (code as short, display as string, system as string)[], text as string), valueCodeableConcept as (coding as (code as integer, display as string, system as string)[], text as string), valueQuantity as (code as string, system as string, unit as string, value as double), verificationStatus as (coding as (code as string, system as string)[])))[],",
 				"          resourceType as string,",
-				"          type as string",
+				"          type as string,",
+				"          entry as (fullUrl as string, resource as (resourceType as string, id as string, meta as (profile as string[]), text as (status as string, div as string), extension as (url as string, extension as (url as string, valueCoding as (system as string, code as string, display as string))[])[], identifier as (system as string, value as string)[], name as (use as string, family as string, given as string[], prefix as string[])[], telecom as (system as string, value as string, use as string)[], gender as string, birthDate as string, deceasedDateTime as string, address as (extension as (url as string, extension as (url as string, valueDecimal as double)[])[], line as string[], city as string, state as string, postalCode as string, country as string)[], maritalStatus as (coding as (system as string, code as string, display as string)[], text as string), multipleBirthBoolean as boolean, communication as (language as (coding as (system as string, code as string, display as string)[], text as string))[]), request as (method as string, url as string))[]",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
@@ -100,53 +112,59 @@
 				"          patient_id = entry.resource.patient.reference,",
 				"          insurar = entry.resource.insurance[1].coverage.display,",
 				"          claim_date = entry.resource.created,",
-				"          paid_amount = entry.resource.payment.amount.value,",
-				"          billed_amount = entry.resource.item[1].adjudication[1].amount.value",
+				"          billed_amount = entry.resource.total",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select2",
-				"derivedColumn6 derive(patient_id = replace(patient_id,'urn:uuid:','')) ~> derivedColumn3",
+				"select2 derive(patient_id = replace(patient_id,'urn:uuid:','')) ~> derivedColumn3",
 				"derivedColumn3 derive(claim_date = toDate(claim_date, 'yyyy-MM-dd')) ~> derivedColumn4",
 				"derivedColumn4 aggregate(groupBy(patient_id),",
 				"     claim_date = max(claim_date),",
 				"          insurar = first(insurar),",
-				"          paid_amount = first(paid_amount),",
-				"          billed_amount = first(billed_amount),",
-				"          claim_decision = first(claim_decision)) ~> aggregate1",
+				"          billed_amount = first(billed_amount)) ~> aggregate1",
 				"aggregate1 derive(insurance_tier = case( insurar == 'Humana', 'Premium',     insurar == 'UnitedHealthcare', 'Premium',     insurar == 'Aetna', 'Premium',     insurar == 'Medicare', 'Government',     insurar == 'Medicaid', 'Government',     isNull(insurar), 'Unknown',     'Standard' )) ~> derivedColumn5",
 				"derivedColumn5, derivedColumn2 join(patient_id == id,",
-				"     joinType:'inner',",
+				"     joinType:'left',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
 				"     broadcast: 'auto')~> join1",
-				"join1 select(mapColumn(",
+				"flatten1 filter(entry.resource.resourceType=='ExplanationOfBenefit') ~> filter3",
+				"filter3 select(mapColumn(",
+				"          paid_amount = entry.resource.payment.amount.value,",
+				"          claim_id = entry.resource.patient.reference",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select4",
+				"select4 derive(claim_decision = case(    paid_amount > 0, 'APPROVED',    'DENIED')) ~> derivedColumn7",
+				"derivedColumn7 derive(claim_id = replace(claim_id,'urn:uuid:','')) ~> derivedColumn8",
+				"derivedColumn8, join1 join(claim_id == patient_id,",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join2",
+				"join2 select(mapColumn(",
+				"          paid_amount,",
+				"          claim_decision,",
 				"          patient_id,",
 				"          claim_date,",
 				"          insurar,",
+				"          billed_amount,",
 				"          insurance_tier,",
 				"          resourceType,",
-				"          id,",
 				"          gender,",
-				"          birthDate = Birthdate,",
+				"          Birthdate,",
 				"          age,",
-				"          age_bend,",
-				"          paid_amount,",
-				"          billed_amount,",
-				"          claim_decision",
+				"          age_bend",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select3",
-				"select2 derive(claim_decision = case(\r",
-				"    paid_amount > 0, 'APPROVED',\r",
-				"    'DENIED'\r",
-				")) ~> derivedColumn6",
-				"select3 sink(allowSchemaDrift: true,",
+				"     skipDuplicateMapOutputs: true) ~> select5",
+				"select5 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1"
+				"     skipDuplicateMapOutputs: true) ~> sink2"
 			]
 		}
 	}
