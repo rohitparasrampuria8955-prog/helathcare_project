@@ -78,6 +78,9 @@
 				},
 				{
 					"name": "select5"
+				},
+				{
+					"name": "aggregate2"
 				}
 			],
 			"scriptLines": [
@@ -135,7 +138,7 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select4",
-				"select4 derive(claim_decision = case(\r",
+				"aggregate2 derive(claim_decision = case(\r",
 				"    paid_amount <= 0, 'APPROVED',\r",
 				"    'DENIED'\r",
 				")) ~> derivedColumn7",
@@ -161,6 +164,8 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select5",
+				"select4 aggregate(groupBy(claim_id),",
+				"     paid_amount = max(paid_amount)) ~> aggregate2",
 				"select5 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     umask: 0022,",
