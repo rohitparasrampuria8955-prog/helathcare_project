@@ -744,7 +744,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"folderPath": "landing/patient_fhir_data",
+						"folderPath": "new_landing/patient_fhir_file_data",
 						"fileSystem": "helthcare-data"
 					},
 					"columnDelimiter": ",",
@@ -753,6 +753,310 @@
 					"quoteChar": "\""
 				},
 				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/helthcare_project_link_service')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/test')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "helthcare_project_link_service",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "Abdul218_Harris789_b0a06ead-cc42-aa48-dad6-841d4aa679fa.json",
+						"folderPath": "json_landing_data",
+						"fileSystem": "helthcare-data"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"resourceType": {
+							"type": "string"
+						},
+						"type": {
+							"type": "string"
+						},
+						"entry": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"fullUrl": {
+										"type": "string"
+									},
+									"resource": {
+										"type": "object",
+										"properties": {
+											"resourceType": {
+												"type": "string"
+											},
+											"id": {
+												"type": "string"
+											},
+											"meta": {
+												"type": "object",
+												"properties": {
+													"profile": {
+														"type": "array",
+														"items": {
+															"type": "string"
+														}
+													}
+												}
+											},
+											"text": {
+												"type": "object",
+												"properties": {
+													"status": {
+														"type": "string"
+													},
+													"div": {
+														"type": "string"
+													}
+												}
+											},
+											"extension": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"url": {
+															"type": "string"
+														},
+														"extension": {
+															"type": "array",
+															"items": {
+																"type": "object",
+																"properties": {
+																	"url": {
+																		"type": "string"
+																	},
+																	"valueCoding": {
+																		"type": "object",
+																		"properties": {
+																			"system": {
+																				"type": "string"
+																			},
+																			"code": {
+																				"type": "string"
+																			},
+																			"display": {
+																				"type": "string"
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											},
+											"identifier": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"system": {
+															"type": "string"
+														},
+														"value": {
+															"type": "string"
+														}
+													}
+												}
+											},
+											"name": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"use": {
+															"type": "string"
+														},
+														"family": {
+															"type": "string"
+														},
+														"given": {
+															"type": "array",
+															"items": {
+																"type": "string"
+															}
+														},
+														"prefix": {
+															"type": "array",
+															"items": {
+																"type": "string"
+															}
+														}
+													}
+												}
+											},
+											"telecom": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"system": {
+															"type": "string"
+														},
+														"value": {
+															"type": "string"
+														},
+														"use": {
+															"type": "string"
+														}
+													}
+												}
+											},
+											"gender": {
+												"type": "string"
+											},
+											"birthDate": {
+												"type": "string"
+											},
+											"deceasedDateTime": {
+												"type": "string"
+											},
+											"address": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"extension": {
+															"type": "array",
+															"items": {
+																"type": "object",
+																"properties": {
+																	"url": {
+																		"type": "string"
+																	},
+																	"extension": {
+																		"type": "array",
+																		"items": {
+																			"type": "object",
+																			"properties": {
+																				"url": {
+																					"type": "string"
+																				},
+																				"valueDecimal": {
+																					"type": "number"
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														},
+														"line": {
+															"type": "array",
+															"items": {
+																"type": "string"
+															}
+														},
+														"city": {
+															"type": "string"
+														},
+														"state": {
+															"type": "string"
+														},
+														"postalCode": {
+															"type": "string"
+														},
+														"country": {
+															"type": "string"
+														}
+													}
+												}
+											},
+											"maritalStatus": {
+												"type": "object",
+												"properties": {
+													"coding": {
+														"type": "array",
+														"items": {
+															"type": "object",
+															"properties": {
+																"system": {
+																	"type": "string"
+																},
+																"code": {
+																	"type": "string"
+																},
+																"display": {
+																	"type": "string"
+																}
+															}
+														}
+													},
+													"text": {
+														"type": "string"
+													}
+												}
+											},
+											"multipleBirthBoolean": {
+												"type": "boolean"
+											},
+											"communication": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"language": {
+															"type": "object",
+															"properties": {
+																"coding": {
+																	"type": "array",
+																	"items": {
+																		"type": "object",
+																		"properties": {
+																			"system": {
+																				"type": "string"
+																			},
+																			"code": {
+																				"type": "string"
+																			},
+																			"display": {
+																				"type": "string"
+																			}
+																		}
+																	}
+																},
+																"text": {
+																	"type": "string"
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									},
+									"request": {
+										"type": "object",
+										"properties": {
+											"method": {
+												"type": "string"
+											},
+											"url": {
+												"type": "string"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/helthcare_project_link_service')]"
@@ -783,7 +1087,7 @@
 								"referenceName": "loadjsonindatabricks",
 								"type": "DatasetReference"
 							},
-							"name": "sink1"
+							"name": "sink2"
 						}
 					],
 					"transformations": [
@@ -824,10 +1128,22 @@
 							"name": "join1"
 						},
 						{
-							"name": "select3"
+							"name": "filter3"
 						},
 						{
-							"name": "derivedColumn6"
+							"name": "select4"
+						},
+						{
+							"name": "derivedColumn7"
+						},
+						{
+							"name": "derivedColumn8"
+						},
+						{
+							"name": "join2"
+						},
+						{
+							"name": "select5"
 						}
 					],
 					"scriptLines": [
@@ -862,53 +1178,59 @@
 						"          patient_id = entry.resource.patient.reference,",
 						"          insurar = entry.resource.insurance[1].coverage.display,",
 						"          claim_date = entry.resource.created,",
-						"          paid_amount = entry.resource.payment.amount.value,",
-						"          billed_amount = entry.resource.item[1].adjudication[1].amount.value",
+						"          billed_amount = entry.resource.total",
 						"     ),",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true) ~> select2",
-						"derivedColumn6 derive(patient_id = replace(patient_id,'urn:uuid:','')) ~> derivedColumn3",
+						"select2 derive(patient_id = replace(patient_id,'urn:uuid:','')) ~> derivedColumn3",
 						"derivedColumn3 derive(claim_date = toDate(claim_date, 'yyyy-MM-dd')) ~> derivedColumn4",
 						"derivedColumn4 aggregate(groupBy(patient_id),",
 						"     claim_date = max(claim_date),",
 						"          insurar = first(insurar),",
-						"          paid_amount = first(paid_amount),",
-						"          billed_amount = first(billed_amount),",
-						"          claim_decision = first(claim_decision)) ~> aggregate1",
+						"          billed_amount = first(billed_amount)) ~> aggregate1",
 						"aggregate1 derive(insurance_tier = case( insurar == 'Humana', 'Premium',     insurar == 'UnitedHealthcare', 'Premium',     insurar == 'Aetna', 'Premium',     insurar == 'Medicare', 'Government',     insurar == 'Medicaid', 'Government',     isNull(insurar), 'Unknown',     'Standard' )) ~> derivedColumn5",
 						"derivedColumn5, derivedColumn2 join(patient_id == id,",
-						"     joinType:'inner',",
+						"     joinType:'left',",
 						"     matchType:'exact',",
 						"     ignoreSpaces: false,",
 						"     broadcast: 'auto')~> join1",
-						"join1 select(mapColumn(",
+						"flatten1 filter(entry.resource.resourceType=='ExplanationOfBenefit') ~> filter3",
+						"filter3 select(mapColumn(",
+						"          paid_amount = entry.resource.payment.amount.value,",
+						"          claim_id = entry.resource.patient.reference",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> select4",
+						"select4 derive(claim_decision = case(    paid_amount > 0, 'APPROVED',    'DENIED')) ~> derivedColumn7",
+						"derivedColumn7 derive(claim_id = replace(claim_id,'urn:uuid:','')) ~> derivedColumn8",
+						"derivedColumn8, join1 join(claim_id == patient_id,",
+						"     joinType:'left',",
+						"     matchType:'exact',",
+						"     ignoreSpaces: false,",
+						"     broadcast: 'auto')~> join2",
+						"join2 select(mapColumn(",
+						"          paid_amount,",
+						"          claim_decision,",
 						"          patient_id,",
 						"          claim_date,",
 						"          insurar,",
+						"          billed_amount,",
 						"          insurance_tier,",
 						"          resourceType,",
-						"          id,",
 						"          gender,",
-						"          birthDate = Birthdate,",
+						"          Birthdate,",
 						"          age,",
-						"          age_bend,",
-						"          paid_amount,",
-						"          billed_amount,",
-						"          claim_decision",
+						"          age_bend",
 						"     ),",
 						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true) ~> select3",
-						"select2 derive(claim_decision = case(\r",
-						"    paid_amount > 0, 'APPROVED',\r",
-						"    'DENIED'\r",
-						")) ~> derivedColumn6",
-						"select3 sink(allowSchemaDrift: true,",
+						"     skipDuplicateMapOutputs: true) ~> select5",
+						"select5 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     umask: 0022,",
 						"     preCommands: [],",
 						"     postCommands: [],",
 						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true) ~> sink1"
+						"     skipDuplicateMapOutputs: true) ~> sink2"
 					]
 				}
 			},
@@ -996,7 +1318,7 @@
 														"type": "Expression"
 													}
 												},
-												"sink1": {}
+												"sink2": {}
 											}
 										},
 										"staging": {},
