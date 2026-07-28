@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "new_landing/patient_fhir_file_data",
-				"fileSystem": "helthcare-data"
+				"folderPath": "landing/patient_fhir_data",
+				"fileSystem": "healthcare"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
