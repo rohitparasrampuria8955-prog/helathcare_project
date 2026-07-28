@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "json_landing_data",
-				"fileSystem": "helthcare-data"
+				"folderPath": "jsonlanding",
+				"fileSystem": "healthcare"
 			}
 		},
 		"schema": {
