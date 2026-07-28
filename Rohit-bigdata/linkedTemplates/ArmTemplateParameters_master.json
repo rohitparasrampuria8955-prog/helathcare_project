@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "Rohit-bigdata"
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"helthcare_project_link_service_accountKey": {
+			"value": ""
+		},
+		"projectlinkservice_accountKey": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://databricksdatastore123.dfs.core.windows.net/"
+		},
+		"helthcare_project_link_service_properties_typeProperties_url": {
+			"value": "https://healthcaredata.dfs.core.windows.net/"
+		},
+		"projectlinkservice_properties_typeProperties_url": {
+			"value": "https://rohitprojectdata.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
