@@ -19,8 +19,8 @@
 					"value": "@dataset().pfilename",
 					"type": "Expression"
 				},
-				"folderPath": "json_landing_data",
-				"fileSystem": "helthcare-data"
+				"folderPath": "jsonlanding",
+				"fileSystem": "healthcare"
 			}
 		},
 		"schema": {
