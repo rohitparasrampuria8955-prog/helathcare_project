@@ -78,9 +78,6 @@
 				},
 				{
 					"name": "aggregate2"
-				},
-				{
-					"name": "derivedColumn9"
 				}
 			],
 			"scriptLines": [
@@ -146,7 +143,7 @@
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
 				"     broadcast: 'auto')~> join2",
-				"derivedColumn9 select(mapColumn(",
+				"join2 select(mapColumn(",
 				"          patient_id = derivedColumn8@patient_id,",
 				"          created,",
 				"          paid_amount,",
@@ -166,15 +163,6 @@
 				"select4 aggregate(groupBy(patient_id),",
 				"     created = max(created),",
 				"          paid_amount = last(paid_amount)) ~> aggregate2",
-				"join2 derive(claim_decision = iif(\r",
-				"    billed_amount.value == 0,\r",
-				"    'NO CLAIM',\r",
-				"    iif(\r",
-				"        paid_amount > 0,\r",
-				"        'APPROVED',\r",
-				"        'DENIED'\r",
-				"    )\r",
-				")) ~> derivedColumn9",
 				"select5 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     umask: 0022,",
