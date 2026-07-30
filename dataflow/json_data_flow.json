@@ -68,6 +68,9 @@
 					"name": "select4"
 				},
 				{
+					"name": "derivedColumn7"
+				},
+				{
 					"name": "derivedColumn8"
 				},
 				{
@@ -121,7 +124,7 @@
 				"derivedColumn4 aggregate(groupBy(patient_id),",
 				"     claim_date = max(claim_date),",
 				"          insurar = first(insurar),",
-				"          billed_amount = last(billed_amount)) ~> aggregate1",
+				"          billed_amount = first(billed_amount)) ~> aggregate1",
 				"aggregate1 derive(insurance_tier = case( insurar == 'Humana', 'Premium',     insurar == 'UnitedHealthcare', 'Premium',     insurar == 'Aetna', 'Premium',     insurar == 'Medicare', 'Government',     insurar == 'Medicaid', 'Government',     isNull(insurar), 'Unknown',     'Standard' )) ~> derivedColumn5",
 				"derivedColumn5, derivedColumn2 join(patient_id == id,",
 				"     joinType:'left',",
@@ -132,12 +135,12 @@
 				"filter3 select(mapColumn(",
 				"          paid_amount = entry.resource.payment.amount.value,",
 				"          patient_id = entry.resource.patient.reference,",
-				"          created = entry.resource.created,",
-				"          Claim_decision = entry.resource.outcome",
+				"          created = entry.resource.created",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select4",
-				"aggregate2 derive(patient_id = replace(patient_id,'urn:uuid:','')) ~> derivedColumn8",
+				"aggregate2 derive(claim_decision = case(  paid_amount <= 0, 'APPROVED',    'DENIED')) ~> derivedColumn7",
+				"derivedColumn7 derive(patient_id = replace(patient_id,'urn:uuid:','')) ~> derivedColumn8",
 				"derivedColumn8, join1 join(derivedColumn8@patient_id == aggregate1@patient_id,",
 				"     joinType:'left',",
 				"     matchType:'exact',",
@@ -162,7 +165,7 @@
 				"     skipDuplicateMapOutputs: true) ~> select5",
 				"select4 aggregate(groupBy(patient_id),",
 				"     created = max(created),",
-				"          paid_amount = last(paid_amount)) ~> aggregate2",
+				"          paid_amount = first(paid_amount)) ~> aggregate2",
 				"select5 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     umask: 0022,",
