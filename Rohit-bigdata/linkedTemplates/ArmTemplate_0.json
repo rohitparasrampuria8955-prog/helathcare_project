@@ -1134,9 +1134,6 @@
 							"name": "select4"
 						},
 						{
-							"name": "derivedColumn7"
-						},
-						{
 							"name": "derivedColumn8"
 						},
 						{
@@ -1147,6 +1144,12 @@
 						},
 						{
 							"name": "aggregate2"
+						},
+						{
+							"name": "derivedColumn9"
+						},
+						{
+							"name": "derivedColumn10"
 						}
 					],
 					"scriptLines": [
@@ -1187,10 +1190,10 @@
 						"     skipDuplicateMapOutputs: true) ~> select2",
 						"select2 derive(patient_id = replace(patient_id,'urn:uuid:','')) ~> derivedColumn3",
 						"derivedColumn3 derive(claim_date = toDate(claim_date, 'yyyy-MM-dd')) ~> derivedColumn4",
-						"derivedColumn4 aggregate(groupBy(patient_id),",
+						"derivedColumn9 aggregate(groupBy(patient_id),",
 						"     claim_date = max(claim_date),",
 						"          insurar = first(insurar),",
-						"          billed_amount = first(billed_amount)) ~> aggregate1",
+						"          billed_amount = last(billed_amount)) ~> aggregate1",
 						"aggregate1 derive(insurance_tier = case( insurar == 'Humana', 'Premium',     insurar == 'UnitedHealthcare', 'Premium',     insurar == 'Aetna', 'Premium',     insurar == 'Medicare', 'Government',     insurar == 'Medicaid', 'Government',     isNull(insurar), 'Unknown',     'Standard' )) ~> derivedColumn5",
 						"derivedColumn5, derivedColumn2 join(patient_id == id,",
 						"     joinType:'left',",
@@ -1201,22 +1204,21 @@
 						"filter3 select(mapColumn(",
 						"          paid_amount = entry.resource.payment.amount.value,",
 						"          patient_id = entry.resource.patient.reference,",
-						"          created = entry.resource.created",
+						"          created = entry.resource.created,",
+						"          Claim_decision = entry.resource.outcome",
 						"     ),",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true) ~> select4",
-						"aggregate2 derive(claim_decision = case(  paid_amount <= 0, 'APPROVED',    'DENIED')) ~> derivedColumn7",
-						"derivedColumn7 derive(patient_id = replace(patient_id,'urn:uuid:','')) ~> derivedColumn8",
+						"aggregate2 derive(patient_id = replace(patient_id,'urn:uuid:','')) ~> derivedColumn8",
 						"derivedColumn8, join1 join(derivedColumn8@patient_id == aggregate1@patient_id,",
 						"     joinType:'left',",
 						"     matchType:'exact',",
 						"     ignoreSpaces: false,",
 						"     broadcast: 'auto')~> join2",
-						"join2 select(mapColumn(",
+						"derivedColumn10 select(mapColumn(",
 						"          patient_id = derivedColumn8@patient_id,",
 						"          created,",
 						"          paid_amount,",
-						"          claim_decision,",
 						"          claim_date,",
 						"          insurar,",
 						"          billed_amount,",
@@ -1225,13 +1227,16 @@
 						"          gender,",
 						"          Birthdate,",
 						"          age,",
-						"          age_bend",
+						"          age_bend,",
+						"          Claim_decision",
 						"     ),",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true) ~> select5",
 						"select4 aggregate(groupBy(patient_id),",
 						"     created = max(created),",
-						"          paid_amount = first(paid_amount)) ~> aggregate2",
+						"          paid_amount = last(paid_amount)) ~> aggregate2",
+						"derivedColumn4 derive(billed_amount = toDecimal(regexExtract(billed_amount, '\"value\":([0-9.]+)', 1),18,2)) ~> derivedColumn9",
+						"join2 derive(Claim_decision = iif(     billed_amount == 0.0,     'NO CLAIM',     iif(         paid_amount <= 0.0,         'APPROVED',         'DENIED'     ) )) ~> derivedColumn10",
 						"select5 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     umask: 0022,",
